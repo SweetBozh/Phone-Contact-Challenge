@@ -5,10 +5,14 @@ public class Messages {
     Contact destination;
     Contact source;
 
-    public Messages(String message, Contact destination, Contact source) {
+    public Messages(String message, Contact destination) {
         this.message = message;
         this.destination = destination;
-        this.source = source;
+    }
+
+    public void showMessage() {
+        System.out.println("To: " + destination.getName());
+        System.out.println("\t\"" + message + "\"");
     }
 
     public String getMessage() {
@@ -25,13 +29,5 @@ public class Messages {
 
     public void setDestination(Contact destination) {
         this.destination = destination;
-    }
-
-    public Contact getSource() {
-        return source;
-    }
-
-    public void setSource(Contact source) {
-        this.source = source;
     }
 }
