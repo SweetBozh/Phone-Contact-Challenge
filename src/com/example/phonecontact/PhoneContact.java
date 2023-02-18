@@ -1,6 +1,7 @@
 package com.example.phonecontact;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class PhoneContact {
@@ -152,27 +153,29 @@ public class PhoneContact {
 
     private static void deleteContact() {
         scanner = new Scanner(System.in);
+        List<Contact> removeList = new ArrayList<>();
         try {
             String name = "";
             boolean contactExist = false;
             System.out.println("""
                     ---------------------------
-                    "Please Enter Contact Name to delete:""");
+                    Please Enter Contact Name to delete:""");
             if (scanner.hasNext()) {
                 name = scanner.next();
                 for (Contact c : contactList) {
                     if (c.getName().equals(name)) {
-                        contactList.remove(c);
+                        removeList.add(c);
                         contactExist = true;
                         System.out.println(c.getName() + " was deleted");
                     }
                 }
+                contactList.removeAll(removeList);
                 if (!contactExist) {
                     System.out.println("Contact not found !");
                 }
             }
         } catch (Exception e) {
-            System.err.println("Error Occurs");
+            e.printStackTrace();
         }
         showMenu();
         scanner.close();
@@ -202,7 +205,7 @@ public class PhoneContact {
     private static void viewMessageList() {
         System.out.println("""
                 ---------------------------
-                "Message List""");
+                Message List""");
         for (Messages m : messageList) {
             m.showMessage();
         }
@@ -213,7 +216,7 @@ public class PhoneContact {
         scanner = new Scanner(System.in);
         System.out.println("""
                 ---------------------------
-                "Sending Message""");
+                Sending Message""");
         System.out.println("To: ");
         String destination = scanner.next();
 
